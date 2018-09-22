@@ -1,0 +1,20 @@
+body {
+    background-image: url(http://klindenmeyer.com/wp-content/uploads/2013/02/Sand-Texture.jpg);
+    background-size: auto;
+    text-align: center;
+
+}
+
+.card {
+    float: left;
+    margin: 5px;;
+}
+
+#button-container, .row {
+    width: 90%;
+    margin: 10px auto auto auto;
+}
+
+.animal-button, #submit-button {
+    margin: 5px;
+};
