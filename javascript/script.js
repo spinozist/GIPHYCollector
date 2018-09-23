@@ -33,9 +33,7 @@ window.onload = function () {
             var animal = $(this).val();
             console.log(`${animal} button clicked!`);
             drawGiphs(animal);
-
         });
-
     });
 
 
@@ -48,7 +46,7 @@ function drawGiphs(a) {
         method: `GET`
     }).then(function (response) {
         console.log(response);
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 2; i++) {
             var giphyCard = $(`<div>`);
             var animURL = response.data[i].images.fixed_height.url;
             var stillURL = response.data[i].images.fixed_height_still.url;
@@ -64,24 +62,24 @@ function drawGiphs(a) {
                 </button>
                 `);
             $(`#giphy-container`).prepend(giphyCard);
+        };
 
-            $(`.giphyButton`).on(`click`, function () {
-                var status = $(this).attr(`status`);
-                console.log(`giphyButton clicked! Status is ${status}`)
-        
-                if (status === "animated") {
-                    var stillURL = $(this).attr(`still_url`);
-                    $(`img`, this).attr(`src`, stillURL);
-                    $(this).attr(`status`, `still`);
-                }
-        
-                if (status === "still") {
-                    var animURL = $(this).attr(`anim_url`);
-                    $(`img`, this).attr(`src`, animURL);
-                    $(this).attr(`status`, `animated`);
-                }
-            });
-        }
+        $(`.giphyButton`).on(`click`, function () {
+            var status = $(this).attr(`status`);
+            console.log(`giphyButton clicked! Status is ${status}`)
+    
+            if (status === "animated") {
+                var stillURL = $(this).attr(`still_url`);
+                $(`img`, this).attr(`src`, stillURL);
+                $(this).attr(`status`, `still`);
+            } 
+            
+            else if (status === "still") {
+                var animURL = $(this).attr(`anim_url`);
+                $(`img`, this).attr(`src`, animURL);
+                $(this).attr(`status`, `animated`);
+            };
+        });
     });
 
 
