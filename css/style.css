@@ -18,3 +18,7 @@ body {
 .animal-button, #submit-button {
     margin: 5px;
 };
+
+.giphyButton {
+    z-index: 1;
+}

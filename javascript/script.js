@@ -1,5 +1,5 @@
 var api_key = `xitYMCsB071sZnhYgg0ANkI3iRMocM7c`;
-var animalList = [`zebra`, `panda`, `llama`, `lemur`,`kitten`,`dolphin`,`chihuahua`,];
+var animalList = [`zebra`, `panda`, `llama`, `lemur`, `kitten`, `dolphin`, `chihuahua`,];
 
 
 function drawButton() {
@@ -33,8 +33,12 @@ window.onload = function () {
             var animal = $(this).val();
             console.log(`${animal} button clicked!`);
             drawGiphs(animal);
+
         });
+
     });
+
+
 };
 
 function drawGiphs(a) {
@@ -46,18 +50,40 @@ function drawGiphs(a) {
         console.log(response);
         for (i = 0; i < 10; i++) {
             var giphyCard = $(`<div>`);
-            var giphyURL = response.data[i].images.fixed_height.url;
+            var animURL = response.data[i].images.fixed_height.url;
+            var stillURL = response.data[i].images.fixed_height_still.url;
             var giphyRating = response.data[i].rating;
             giphyCard.attr(`class`, `card`)
-                .attr(`style`,`width: 45%;`)
+                .attr(`style`, `width: 30%;`)
                 .html(`
-                <img class="card-img-top" src="${giphyURL}">
+                <button class="giphyButton" still_url="${stillURL}" anim_url="${animURL}" status="still">                
+                <img class="card-img-top" src="${stillURL}">
                 <div class="card-body">
                     <p class="card-text">Rated: ${giphyRating}</p>
                 </div>
+                </button>
                 `);
             $(`#giphy-container`).prepend(giphyCard);
+
+            $(`.giphyButton`).on(`click`, function () {
+                var status = $(this).attr(`status`);
+                console.log(`giphyButton clicked! Status is ${status}`)
+        
+                if (status === "animated") {
+                    var stillURL = $(this).attr(`still_url`);
+                    $(`img`, this).attr(`src`, stillURL);
+                    $(this).attr(`status`, `still`);
+                }
+        
+                if (status === "still") {
+                    var animURL = $(this).attr(`anim_url`);
+                    $(`img`, this).attr(`src`, animURL);
+                    $(this).attr(`status`, `animated`);
+                }
+            });
         }
     });
+
+
 }
 
