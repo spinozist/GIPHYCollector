@@ -46,7 +46,7 @@ function drawGiphs(a) {
         method: `GET`
     }).then(function (response) {
         console.log(response);
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 10; i++) {
             var giphyCard = $(`<div>`);
             var animURL = response.data[i].images.fixed_height.url;
             var stillURL = response.data[i].images.fixed_height_still.url;
