@@ -51,7 +51,7 @@ window.onload = function () {
 
             $(`.animal-button`).on(`click`, function () {
                 var animal = $(this).val();
-                console.log(`${animal} button clicked!`);
+                console.log(`${animal} button   clicked!`);
                 drawGiphs(animal);
             });
         }

@@ -4,11 +4,6 @@ body {
     text-align: center;
 }
 
-.card {
-    float: left;
-    margin: 0px 5px 5px 5px;
-}
-
 .row {
     width: 90%;
     margin: 30px auto auto auto;
@@ -18,14 +13,25 @@ body {
     margin-top: 20px;
 }
 
+#search-container {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+}
 .animal-button, #submit-button {
     margin: 5px;
-};
+}
 
 .card {
-    padding: 15px;
     float: left;
     width: 30%;
+    margin: 0px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+.giphyButton {
+    border-radius: 5px;
+    border-color: white;
 }
 
 .card-img-top {
@@ -34,34 +40,47 @@ body {
     /* height: 200px; */
 }
 
-/* @media screen and (max-width: 800px) {
-    #giphy-container {
+@media screen and (max-width: 780px) {
+    .card {
+        width: 45%;
+    }
+
+    .row {
         width: 100%;
-        margin: auto;
+        padding: 5px;
     }
-    
-    .giphyButton {
-        height: 100%;
-    }
-
-    #button-container, #search-container {
-        visibility: hidden; 
-        margin-right: -25%;   
+    .animal-button, #submit-button {
+        font-size: 12px;
+        /* float: right; */
     }
 
-    #button-container-mobile, #search-container-mobile {
-        visibility: visible;
-        width: 100%;
+    #search-container {
+        padding: 5px;
+        color: white;
+        top: 5px;
+        right: 5px;
+        background-color: black;
+        opacity: .8;
+        border-radius: 5px;
     }
 
-    #text-input {
-        width: 95%;
-        margin: auto;
-    }
-
-    .giphyButton {
-        float: left;
+    h3 {
         font-size: 16px;
+    }    
+
+    #button-container {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    input {
+        width: 50px;
+    }
+
+    .giphy-container {
+        position: relative;
+        float: right;
+        width: 100%;
     }
 }
- */
+
