@@ -37,8 +37,8 @@ body {
         margin: auto;
     }
     
-    .card {
-        width: 100%;
+    .giphyButton {
+        height: 100%;
     }
 
     #button-container, #search-container {
