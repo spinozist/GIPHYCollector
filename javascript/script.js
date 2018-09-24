@@ -9,8 +9,6 @@ function drawButton() {
             .attr(`class`, `btn btn-info animal-button`)
             .text(animalList[i]);
         $(`#button-container`).append(button);
-        $(`#button-container-mobile`).append(button);
-
     }
 };
 
@@ -25,13 +23,13 @@ window.onload = function () {
         $(`.giphyButton`).on(`click`, function () {
             var status = $(this).attr(`status`);
             console.log(`giphyButton clicked! Status is ${status}`)
-    
+
             if (status === "animated") {
                 var stillURL = $(this).attr(`still_url`);
                 $(`img`, this).attr(`src`, stillURL);
                 $(this).attr(`status`, `still`);
-            } 
-            
+            }
+
             else if (status === "still") {
                 var animURL = $(this).attr(`anim_url`);
                 $(`img`, this).attr(`src`, animURL);
@@ -42,18 +40,22 @@ window.onload = function () {
 
     $(`#submit-button`).on(`click`, function () {
         var newButton = $(`#text-input`).val();
-        animalList.push(newButton);
-        // localStorage.setItem(animalList);
-        $(`#button-container`).empty();
-        $(`#button-container-mobile`).empty();
-        var newButton = $(`#text-input`).val("");
-        drawButton();
+        if (newButton === "") {
+            return
+        } else {
+            animalList.push(newButton);
+            // localStorage.setItem(animalList);
+            $(`#button-container`).empty();
+            var newButton = $(`#text-input`).val("");
+            drawButton();
 
-        $(`.animal-button`).on(`click`, function () {
-            var animal = $(this).val();
-            console.log(`${animal} button clicked!`);
-            drawGiphs(animal);
-        });
+            $(`.animal-button`).on(`click`, function () {
+                var animal = $(this).val();
+                console.log(`${animal} button clicked!`);
+                drawGiphs(animal);
+            });
+        }
+
     });
 
 
@@ -86,13 +88,13 @@ function drawGiphs(a) {
         $(`.giphyButton`).on(`click`, function () {
             var status = $(this).attr(`status`);
             console.log(`giphyButton clicked! Status is ${status}`)
-    
+
             if (status === "animated") {
                 var stillURL = $(this).attr(`still_url`);
                 $(`img`, this).attr(`src`, stillURL);
                 $(this).attr(`status`, `still`);
-            } 
-            
+            }
+
             else if (status === "still") {
                 var animURL = $(this).attr(`anim_url`);
                 $(`img`, this).attr(`src`, animURL);
