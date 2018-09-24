@@ -19,10 +19,46 @@ body {
     margin: 5px;
 };
 
-/* .giphyButton {
-    padding: 5px;
+.card {
+    padding: 15px;
+    float: left;
+    width: 30%;
 }
 
-img {
-    margin: 5px;
-} */
+.card-img-top {
+    width: 95%;
+    margin: 10px auto auto auto;
+    /* height: 200px; */
+}
+
+@media screen and (max-width: 800px) {
+    #giphy-container {
+        width: 100%;
+        margin: auto;
+    }
+    
+    .card {
+        width: 100%;
+    }
+
+    #button-container, #search-container {
+        visibility: hidden; 
+        margin-right: -25%;   
+    }
+
+    #button-container-mobile, #search-container-mobile {
+        visibility: visible;
+        width: 100%;
+    }
+
+    #text-input {
+        width: 95%;
+        margin: auto;
+    }
+
+    .giphyButton {
+        float: left;
+        font-size: 16px;
+    }
+}
+

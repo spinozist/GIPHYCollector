@@ -9,6 +9,8 @@ function drawButton() {
             .attr(`class`, `btn btn-info animal-button`)
             .text(animalList[i]);
         $(`#button-container`).append(button);
+        $(`#button-container-mobile`).append(button);
+
     }
 };
 
@@ -20,12 +22,30 @@ window.onload = function () {
         var animal = $(this).val();
         console.log(`${animal} button clicked!`);
         drawGiphs(animal);
+        $(`.giphyButton`).on(`click`, function () {
+            var status = $(this).attr(`status`);
+            console.log(`giphyButton clicked! Status is ${status}`)
+    
+            if (status === "animated") {
+                var stillURL = $(this).attr(`still_url`);
+                $(`img`, this).attr(`src`, stillURL);
+                $(this).attr(`status`, `still`);
+            } 
+            
+            else if (status === "still") {
+                var animURL = $(this).attr(`anim_url`);
+                $(`img`, this).attr(`src`, animURL);
+                $(this).attr(`status`, `animated`);
+            };
+        });
     });
 
     $(`#submit-button`).on(`click`, function () {
         var newButton = $(`#text-input`).val();
         animalList.push(newButton);
+        // localStorage.setItem(animalList);
         $(`#button-container`).empty();
+        $(`#button-container-mobile`).empty();
         var newButton = $(`#text-input`).val("");
         drawButton();
 
@@ -40,7 +60,7 @@ window.onload = function () {
 };
 
 function drawGiphs(a) {
-    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${a}&api_key=${api_key}&limit=10&rating=R`
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${a}&api_key=${api_key}&limit=10&rating=PG`
     $.ajax({
         url: queryURL,
         method: `GET`
@@ -52,7 +72,6 @@ function drawGiphs(a) {
             var stillURL = response.data[i].images.fixed_height_still.url;
             var giphyRating = response.data[i].rating;
             giphyCard.attr(`class`, `card`)
-                .attr(`style`, `width: 30%;`)
                 .html(`
                 <button class="giphyButton" still_url="${stillURL}" anim_url="${animURL}" status="still">                
                 <img class="card-img-top" src="${stillURL}">
